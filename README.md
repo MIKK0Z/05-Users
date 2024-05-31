@@ -5,6 +5,6 @@ to run this program you have to:
 mkdir uploads
 python -m venv .venv
 . .venv/bin/activate
-pip install flask
+pip install flask flask-bs4 flask-login flask-bcrypt flask-sqlalchemy
 python app.py
 ```
