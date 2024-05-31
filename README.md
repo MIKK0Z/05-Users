@@ -10,3 +10,4 @@ python -m venv .venv
 pip install flask flask-bs4 flask-login flask-bcrypt flask-sqlalchemy
 python app.py
 ```
+działa prawie dobrze
