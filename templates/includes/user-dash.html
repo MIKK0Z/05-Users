@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-lg-6">
+        <form method="post" action="#">
+            <div class="input-group">
+                {{ search.hidden_tag() }}
+                {{ search.searchkey(class="form-control rounded-start-2") }}
+                {{ search.submit(class="btn btn-outline-secondary border-secondary-subtle") }}
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-6">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group" role="group">
+                <button role="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createFolder"><i
+                        class="bi bi-folder-plus"></i></button>
+                <button role="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#uploadFile"><i
+                        class="bi bi-cloud-arrow-up"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-lg-12">
+        {% if current_parent != ""%}
+        <a href="{{ url_for('leaveFolder', parent=current_parent) }}">
+            <i class="bi bi-arrow-up"></i> Cofnij
+        </a>
+        {% endif %}
+        <table class="table table-sm align-middle mt-2">
+            <thead class="table-light">
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Data modyfikacji</th>
+                    <th>Rozmiar</th>
+                    <th class="text-end">Edycja</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for folder in folders %}
+                <tr>
+                    <td><i class="{{ folder.icon }} pe-2"></i><a
+                            href="{{ url_for('enterFolder', name=folder.folderName) }}">{{ folder.folderName }}</a></td>
+                    <td>{{ folder.time }}</td>
+                    <td></td>
+                    <td class="text-end text-secondary">
+                        <button role="button" class="btn" data-bs-toggle="modal"
+                            data-bs-target="#deleteFolder{{folder.id}}"><i
+                                class="bi bi-trash3 text-danger"></i></button>
+                        <button data-bs-toggle="modal" data-bs-target="#renameFolder{{folder.id}}" class="btn"><i
+                                class="bi bi-pencil-square"></i></button>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% for file in files %}
+                <tr>
+                    <td><i class="{{ file.icon }} pe-2"></i>{{ file.fileName }}</td>
+                    <td>{{ file.time }}</td>
+                    <td>{{ file.size }} MB</td>
+                    <td class="text-end text-secondary"><i class="bi bi-three-dots-vertical"></i></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

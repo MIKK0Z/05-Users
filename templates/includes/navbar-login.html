@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg bg-body py-3">
+    <div class="col-lg-12 d-flex justify-content-between px-5">
+        <a class="navbar-brand d-flex align-items-center" href="{{ url_for('dashboard') }}">
+            <i class="bi bi-house">&nbsp;</i>
+            <span>Home</span>
+        </a>
+        <div class="dropdown">
+            <button class="btn btn-outline-dark dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                {% if current_user.is_authenticated %}
+                    Witaj, {{ current_user.firstName }}
+                {% endif %}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="bi bi-plus-square pe-2"></i>Menu item
+                    </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="{{ url_for('changePass') }}">
+                        <i class="bi bi-key pe-2"></i>Zmień hasło
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ url_for('logout') }}">
+                        <i class="bi bi-box-arrow-in-right pe-2"></i>Wyloguj
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
